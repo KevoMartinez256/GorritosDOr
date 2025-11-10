@@ -3,6 +3,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { createClientServer } from '@/lib/supabaseClient'
 
+// Forzamos dinámico para que siempre lea la cookie de sesión tras el callback
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
   const supabase = createClientServer()
   const { data: { session } } = await supabase.auth.getSession()
@@ -68,7 +71,8 @@ export default async function Home() {
 
           {!user ? (
             // Estado NO autenticado → botón de Twitch
-            <Link href="/auth/login" className="hover:scale-105 transition-transform block">
+            // Importante: prefetch desactivado para evitar petición RSC con header `rsc`
+            <Link prefetch={false} href="/auth/login" className="hover:scale-105 transition-transform block">
               <Image
                 src={TWITCH_BTN_SRC}
                 alt="Entrar con Twitch"
