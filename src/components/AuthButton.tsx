@@ -1,5 +1,5 @@
 'use client'
-import { createClientBrowser } from '@/lib/supabase-browser'
+import { createClientBrowser } from '@/lib/supabaseClient'
 
 export default function AuthButton() {
   const login = async () => {

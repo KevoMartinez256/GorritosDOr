@@ -1,5 +1,5 @@
 'use client'
-import { createClientBrowser } from '@/lib/supabase-browser'
+import { createClientBrowser } from '@/lib/supabaseClient'
 import { useState } from 'react'
 import CategoryCard from './CategoryCard'
 
